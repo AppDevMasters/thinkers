@@ -9,7 +9,7 @@ interface PricingCardProps {
   isPopular?: boolean
   features: string[]
   ctaText: string
-  onCTAClick: () => void
+  href: string
 }
 
 export const PricingCard: React.FC<PricingCardProps> = ({
@@ -20,7 +20,7 @@ export const PricingCard: React.FC<PricingCardProps> = ({
   isPopular = false,
   features,
   ctaText,
-  onCTAClick,
+  href,
 }) => {
   return (
     <div className={`pricing-card ${isPopular ? 'popular' : ''}`}>
@@ -56,7 +56,7 @@ export const PricingCard: React.FC<PricingCardProps> = ({
         variant={isPopular ? 'primary' : 'outline'}
         size="lg"
         className="w-full"
-        onClick={onCTAClick}
+        href={href}
       >
         {ctaText}
       </Button>

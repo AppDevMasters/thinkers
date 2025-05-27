@@ -44,9 +44,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'your-google-verification-code',
-  },
 }
 
 export default function RootLayout({
@@ -56,26 +53,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <head>
-        {/* Google Analytics */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'GA_MEASUREMENT_ID');
-            `,
-          }}
-        />
-      </head>
       <body className={inter.className}>
         {children}
-        {/* Hotjar or other analytics scripts can go here */}
       </body>
     </html>
   )

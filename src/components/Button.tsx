@@ -5,10 +5,7 @@ interface ButtonProps {
   variant?: 'primary' | 'secondary' | 'outline'
   size?: 'sm' | 'md' | 'lg'
   className?: string
-  onClick?: () => void
   href?: string
-  disabled?: boolean
-  type?: 'button' | 'submit' | 'reset'
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -16,12 +13,9 @@ export const Button: React.FC<ButtonProps> = ({
   variant = 'primary',
   size = 'md',
   className = '',
-  onClick,
   href,
-  disabled = false,
-  type = 'button',
 }) => {
-  const baseClasses = 'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed'
+  const baseClasses = 'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500'
   
   const variantClasses = {
     primary: 'bg-primary-600 hover:bg-primary-700 text-white shadow-lg hover:shadow-xl transform hover:-translate-y-0.5',
@@ -42,7 +36,8 @@ export const Button: React.FC<ButtonProps> = ({
       <a
         href={href}
         className={classes}
-        onClick={onClick}
+        target="_blank"
+        rel="noopener noreferrer"
       >
         {children}
       </a>
@@ -50,13 +45,8 @@ export const Button: React.FC<ButtonProps> = ({
   }
   
   return (
-    <button
-      type={type}
-      className={classes}
-      onClick={onClick}
-      disabled={disabled}
-    >
+    <div className={classes}>
       {children}
-    </button>
+    </div>
   )
 } 

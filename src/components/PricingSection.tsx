@@ -4,19 +4,6 @@ import React from 'react'
 import { PricingCard } from './PricingCard'
 
 export const PricingSection: React.FC = () => {
-  const handlePlanSelect = (plan: string) => {
-    // Track plan selection
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'click', {
-        event_category: 'Pricing',
-        event_label: `Plan Selected: ${plan}`,
-      })
-    }
-    
-    // Redirect to signup/checkout
-    window.open(`https://app.thinkers.team/signup?plan=${plan.toLowerCase()}`, '_blank')
-  }
-
   const plans = [
     {
       plan: 'Starter',
@@ -32,6 +19,7 @@ export const PricingSection: React.FC = () => {
         'Community support',
       ],
       ctaText: 'Start with Starter',
+      href: 'https://apps.apple.com/app/thinkers',
     },
     {
       plan: 'Active',
@@ -48,6 +36,7 @@ export const PricingSection: React.FC = () => {
         'Early access to new features',
       ],
       ctaText: 'Choose Active',
+      href: 'https://apps.apple.com/app/thinkers',
     },
     {
       plan: 'Power',
@@ -65,11 +54,12 @@ export const PricingSection: React.FC = () => {
         'White-label options',
       ],
       ctaText: 'Go Power',
+      href: 'https://apps.apple.com/app/thinkers',
     },
   ]
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white" id="pricing">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center mb-16">
@@ -80,17 +70,17 @@ export const PricingSection: React.FC = () => {
             Choose the perfect plan for your conversation needs. All plans include our core features and privacy protection.
           </p>
           
-          {/* Billing toggle */}
+          {/* Billing toggle - now just visual */}
           <div className="inline-flex items-center bg-gray-100 rounded-lg p-1">
-            <button className="px-4 py-2 rounded-md bg-white text-gray-900 font-medium shadow-sm">
+            <div className="px-4 py-2 rounded-md bg-white text-gray-900 font-medium shadow-sm">
               Monthly
-            </button>
-            <button className="px-4 py-2 rounded-md text-gray-500 font-medium">
+            </div>
+            <div className="px-4 py-2 rounded-md text-gray-500 font-medium">
               Annual
               <span className="ml-1 text-xs bg-primary-100 text-primary-600 px-2 py-0.5 rounded-full">
                 Save 20%
               </span>
-            </button>
+            </div>
           </div>
         </div>
 
@@ -106,12 +96,12 @@ export const PricingSection: React.FC = () => {
               isPopular={plan.isPopular}
               features={plan.features}
               ctaText={plan.ctaText}
-              onCTAClick={() => handlePlanSelect(plan.plan)}
+              href={plan.href}
             />
           ))}
         </div>
 
-        {/* FAQ or additional info */}
+        {/* FAQ */}
         <div className="mt-16 text-center">
           <div className="max-w-4xl mx-auto">
             <h3 className="text-2xl font-bold text-gray-900 mb-8">

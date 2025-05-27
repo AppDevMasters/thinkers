@@ -4,30 +4,6 @@ import React from 'react'
 import { Button } from './Button'
 
 export const HeroSection: React.FC = () => {
-  const handleStartChatting = () => {
-    // Track button click
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'click', {
-        event_category: 'CTA',
-        event_label: 'Hero Start Chatting',
-      })
-    }
-    // Redirect to app or signup
-    window.open('https://app.thinkers.team', '_blank')
-  }
-
-  const handleWatchDemo = () => {
-    // Track button click
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'click', {
-        event_category: 'CTA',
-        event_label: 'Hero Watch Demo',
-      })
-    }
-    // Scroll to demo section or open video
-    document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' })
-  }
-
   return (
     <section className="relative min-h-screen flex items-center justify-center gradient-bg overflow-hidden">
       {/* Background decorative elements */}
@@ -58,18 +34,18 @@ export const HeroSection: React.FC = () => {
             <Button
               variant="secondary"
               size="lg"
-              onClick={handleStartChatting}
+              href="https://apps.apple.com/app/thinkers"
               className="w-full sm:w-auto text-lg px-8 py-4"
             >
-              Start Chatting Free
+              Download on App Store
             </Button>
             <Button
               variant="outline"
               size="lg"
-              onClick={handleWatchDemo}
+              href="#features"
               className="w-full sm:w-auto text-lg px-8 py-4 bg-white/10 text-white border-white/30 hover:bg-white/20 hover:border-white/50"
             >
-              Watch Demo
+              Learn More
             </Button>
           </div>
           
@@ -88,8 +64,8 @@ export const HeroSection: React.FC = () => {
                   <div className="w-20 h-20 bg-primary-200 rounded-full mx-auto mb-4 flex items-center justify-center">
                     <span className="text-2xl">🤖</span>
                   </div>
-                  <p className="text-lg font-medium">App Screenshot Placeholder</p>
-                  <p className="text-sm">Chat interface or Thinker avatar grid</p>
+                  <p className="text-lg font-medium">Thinkers App Preview</p>
+                  <p className="text-sm">Create and chat with AI personalities</p>
                 </div>
               </div>
             </div>
