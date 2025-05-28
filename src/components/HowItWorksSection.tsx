@@ -6,19 +6,16 @@ export const HowItWorksSection: React.FC = () => {
       number: '01',
       title: 'Create Your Thinker',
       description: 'Choose personality traits, expertise areas, and conversation style. Customize your AI companion to match your interests and needs.',
-      icon: '🎨',
     },
     {
       number: '02',
       title: 'Start Chatting',
       description: 'Ask questions, share thoughts, or explore new ideas. Your Thinker adapts to your communication style and remembers your preferences.',
-      icon: '💭',
     },
     {
       number: '03',
       title: 'Build Relationships',
       description: 'Watch your Thinkers evolve and learn from your conversations. Each interaction makes them more personalized and helpful.',
-      icon: '🤝',
     },
   ]
 
@@ -51,9 +48,6 @@ export const HowItWorksSection: React.FC = () => {
                   <div className="relative lg:mx-auto w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold text-lg mb-6 z-10">
                     {step.number}
                   </div>
-                  
-                  {/* Icon */}
-                  <div className="text-4xl mb-4 lg:text-center">{step.icon}</div>
                   
                   {/* Content */}
                   <h3 className="text-xl font-semibold text-gray-900 mb-3">
