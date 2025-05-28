@@ -48,11 +48,6 @@ export const HeroSection: React.FC = () => {
               Learn More
             </Button>
           </div>
-          
-          {/* Trust indicator */}
-          <div className="text-primary-200 text-sm sm:text-base animate-fade-in">
-            ✨ Join 10,000+ users having meaningful AI conversations
-          </div>
         </div>
         
         {/* App screenshot mockup */}
@@ -64,8 +59,6 @@ export const HeroSection: React.FC = () => {
                   <div className="w-20 h-20 bg-primary-200 rounded-full mx-auto mb-4 flex items-center justify-center">
                     <span className="text-2xl">🤖</span>
                   </div>
-                  <p className="text-lg font-medium">Thinkers App Preview</p>
-                  <p className="text-sm">Create and chat with AI personalities</p>
                 </div>
               </div>
             </div>
