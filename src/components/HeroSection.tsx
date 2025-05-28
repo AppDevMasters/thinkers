@@ -1,83 +1,9 @@
 'use client'
 
 import React from 'react'
-import Image from 'next/image'
 import { Button } from './Button'
 
 export const HeroSection: React.FC = () => {
-  const agents = [
-    {
-      id: 1,
-      name: "Alex",
-      role: "Creative Mentor",
-      avatar: "/avatars/alex.png",
-      fallbackEmoji: "🎨",
-    },
-    {
-      id: 2,
-      name: "Maya",
-      role: "Life Coach",
-      avatar: "/avatars/maya.png",
-      fallbackEmoji: "🌟",
-    },
-    {
-      id: 3,
-      name: "Dr. Chen",
-      role: "Science Advisor",
-      avatar: "/avatars/dr-chen.png",
-      fallbackEmoji: "🔬",
-    },
-    {
-      id: 4,
-      name: "Sofia",
-      role: "Language Partner",
-      avatar: "/avatars/sofia.png",
-      fallbackEmoji: "🗣️",
-    },
-    {
-      id: 5,
-      name: "Marcus",
-      role: "Tech Expert",
-      avatar: "/avatars/marcus.png",
-      fallbackEmoji: "💻",
-    },
-    {
-      id: 6,
-      name: "Luna",
-      role: "Wellness Guide",
-      avatar: "/avatars/luna.png",
-      fallbackEmoji: "🧘",
-    },
-    {
-      id: 7,
-      name: "Oliver",
-      role: "Business Mentor",
-      avatar: "/avatars/oliver.png",
-      fallbackEmoji: "💼",
-    },
-    {
-      id: 8,
-      name: "Zara",
-      role: "Study Buddy",
-      avatar: "/avatars/zara.png",
-      fallbackEmoji: "📚",
-    },
-    {
-      id: 9,
-      name: "Phoenix",
-      role: "Adventure Companion",
-      avatar: "/avatars/phoenix.png",
-      fallbackEmoji: "🌍",
-    },
-    {
-      id: 10,
-      name: "Sage",
-      role: "Philosophy Friend",
-      avatar: "/avatars/sage.png",
-      fallbackEmoji: "🤔",
-    }
-  ]
-
   return (
     <section className="relative min-h-screen flex items-center justify-center gradient-bg overflow-hidden">
       {/* Background decorative elements */}
@@ -104,7 +30,7 @@ export const HeroSection: React.FC = () => {
           </p>
           
           {/* CTA buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up mb-12">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
             <Button
               variant="secondary"
               size="lg"
@@ -121,42 +47,6 @@ export const HeroSection: React.FC = () => {
             >
               Learn More
             </Button>
-          </div>
-
-          {/* Avatar showcase */}
-          <div className="animate-slide-up">
-            <p className="text-primary-100 mb-6">Choose from diverse AI personalities:</p>
-            <div className="flex flex-wrap justify-center gap-4 max-w-2xl mx-auto">
-              {agents.map((agent, index) => (
-                <div 
-                  key={agent.id}
-                  className="group relative"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center overflow-hidden group-hover:scale-110 transition-transform duration-300 border border-white/20">
-                    <Image
-                      src={agent.avatar}
-                      alt={`${agent.name} - ${agent.role}`}
-                      width={64}
-                      height={64}
-                      className="w-full h-full object-cover rounded-full"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                        const parent = target.parentElement;
-                        if (parent) {
-                          parent.innerHTML = `<span class="text-2xl">${agent.fallbackEmoji}</span>`;
-                        }
-                      }}
-                    />
-                  </div>
-                  {/* Tooltip on hover */}
-                  <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none">
-                    {agent.name} - {agent.role}
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </div>
