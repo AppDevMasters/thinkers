@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 export const AIAgentsSection: React.FC = () => {
   const agents = [
@@ -6,7 +7,8 @@ export const AIAgentsSection: React.FC = () => {
       id: 1,
       name: "Alex",
       role: "Creative Mentor",
-      avatar: "🎨",
+      avatar: "/avatars/alex.png",
+      fallbackEmoji: "🎨",
       description: "Helps with creative projects, brainstorming, and artistic inspiration",
       personality: "Imaginative • Encouraging • Insightful"
     },
@@ -14,7 +16,8 @@ export const AIAgentsSection: React.FC = () => {
       id: 2,
       name: "Maya",
       role: "Life Coach",
-      avatar: "🌟",
+      avatar: "/avatars/maya.png",
+      fallbackEmoji: "🌟",
       description: "Guides personal growth, goal setting, and mindfulness practices",
       personality: "Supportive • Wise • Motivational"
     },
@@ -22,7 +25,8 @@ export const AIAgentsSection: React.FC = () => {
       id: 3,
       name: "Dr. Chen",
       role: "Science Advisor",
-      avatar: "🔬",
+      avatar: "/avatars/dr-chen.png",
+      fallbackEmoji: "🔬",
       description: "Explains complex topics in physics, chemistry, and biology",
       personality: "Analytical • Patient • Curious"
     },
@@ -30,7 +34,8 @@ export const AIAgentsSection: React.FC = () => {
       id: 4,
       name: "Sofia",
       role: "Language Partner",
-      avatar: "🗣️",
+      avatar: "/avatars/sofia.png",
+      fallbackEmoji: "🗣️",
       description: "Practices conversations and helps learn new languages",
       personality: "Friendly • Cultural • Adaptive"
     },
@@ -38,7 +43,8 @@ export const AIAgentsSection: React.FC = () => {
       id: 5,
       name: "Marcus",
       role: "Tech Expert",
-      avatar: "💻",
+      avatar: "/avatars/marcus.png",
+      fallbackEmoji: "💻",
       description: "Discusses programming, gadgets, and emerging technologies",
       personality: "Logical • Innovative • Practical"
     },
@@ -46,7 +52,8 @@ export const AIAgentsSection: React.FC = () => {
       id: 6,
       name: "Luna",
       role: "Wellness Guide",
-      avatar: "🧘",
+      avatar: "/avatars/luna.png",
+      fallbackEmoji: "🧘",
       description: "Focuses on mental health, meditation, and self-care",
       personality: "Calm • Empathetic • Healing"
     },
@@ -54,7 +61,8 @@ export const AIAgentsSection: React.FC = () => {
       id: 7,
       name: "Oliver",
       role: "Business Mentor",
-      avatar: "💼",
+      avatar: "/avatars/oliver.png",
+      fallbackEmoji: "💼",
       description: "Advises on entrepreneurship, strategy, and career growth",
       personality: "Strategic • Ambitious • Insightful"
     },
@@ -62,7 +70,8 @@ export const AIAgentsSection: React.FC = () => {
       id: 8,
       name: "Zara",
       role: "Study Buddy",
-      avatar: "📚",
+      avatar: "/avatars/zara.png",
+      fallbackEmoji: "📚",
       description: "Helps with learning, research, and academic challenges",
       personality: "Patient • Organized • Encouraging"
     },
@@ -70,7 +79,8 @@ export const AIAgentsSection: React.FC = () => {
       id: 9,
       name: "Phoenix",
       role: "Adventure Companion",
-      avatar: "🌍",
+      avatar: "/avatars/phoenix.png",
+      fallbackEmoji: "🌍",
       description: "Shares travel stories and outdoor activity recommendations",
       personality: "Adventurous • Worldly • Energetic"
     },
@@ -78,7 +88,8 @@ export const AIAgentsSection: React.FC = () => {
       id: 10,
       name: "Sage",
       role: "Philosophy Friend",
-      avatar: "🤔",
+      avatar: "/avatars/sage.png",
+      fallbackEmoji: "🤔",
       description: "Explores deep questions about life, meaning, and existence",
       personality: "Thoughtful • Profound • Questioning"
     }
@@ -105,9 +116,24 @@ export const AIAgentsSection: React.FC = () => {
               className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 text-center group"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* Avatar */}
-              <div className="w-16 h-16 mx-auto mb-4 bg-primary-100 rounded-full flex items-center justify-center text-3xl group-hover:scale-110 transition-transform duration-300">
-                {agent.avatar}
+              {/* Avatar with Image */}
+              <div className="w-16 h-16 mx-auto mb-4 bg-primary-100 rounded-full flex items-center justify-center overflow-hidden group-hover:scale-110 transition-transform duration-300">
+                <Image
+                  src={agent.avatar}
+                  alt={`${agent.name} avatar`}
+                  width={64}
+                  height={64}
+                  className="w-full h-full object-cover rounded-full"
+                  onError={(e) => {
+                    // Fallback to emoji if image fails to load
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const parent = target.parentElement;
+                    if (parent) {
+                      parent.innerHTML = `<span class="text-3xl">${agent.fallbackEmoji}</span>`;
+                    }
+                  }}
+                />
               </div>
               
               {/* Name and role */}
