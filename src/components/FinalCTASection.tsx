@@ -21,24 +21,15 @@ export const FinalCTASection: React.FC = () => {
           Join thousands of users already having meaningful conversations with their custom AI personalities.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+        <div className="flex justify-center mb-16">
           <Button
             variant="secondary"
             size="lg"
             href="https://apps.apple.com/app/thinkers"
-            className="w-full sm:w-auto"
+            className="text-lg px-12 py-4"
           >
             Download Thinkers
           </Button>
-          
-          <span className="text-primary-200">or</span>
-          
-          <a
-            href="#pricing"
-            className="text-white hover:text-secondary-200 font-medium underline underline-offset-4 transition-colors"
-          >
-            View Pricing Plans
-          </a>
         </div>
 
         {/* Trust indicators */}
