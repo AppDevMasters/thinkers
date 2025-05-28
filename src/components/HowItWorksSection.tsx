@@ -67,21 +67,6 @@ export const HowItWorksSection: React.FC = () => {
             ))}
           </div>
         </div>
-
-        {/* Demo screenshots placeholder */}
-        <div className="mt-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {steps.map((step, index) => (
-              <div key={index} className="bg-gray-100 rounded-xl h-64 flex items-center justify-center">
-                <div className="text-center text-gray-500">
-                  <div className="text-3xl mb-2">{step.icon}</div>
-                  <p className="font-medium">Step {step.number} Screenshot</p>
-                  <p className="text-sm">{step.title}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   )
