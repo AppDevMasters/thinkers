@@ -18,7 +18,7 @@ export const FinalCTASection: React.FC = () => {
         </h2>
         
         <p className="text-xl text-primary-100 mb-12 max-w-2xl mx-auto">
-          Join thousands of users already having meaningful conversations with their custom AI personalities.
+          Start creating meaningful conversations with your personalized AI personalities today.
         </p>
 
         <div className="flex justify-center">
