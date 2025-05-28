@@ -21,7 +21,7 @@ export const FinalCTASection: React.FC = () => {
           Join thousands of users already having meaningful conversations with their custom AI personalities.
         </p>
 
-        <div className="flex justify-center mb-16">
+        <div className="flex justify-center">
           <Button
             variant="secondary"
             size="lg"
@@ -30,22 +30,6 @@ export const FinalCTASection: React.FC = () => {
           >
             Download Thinkers
           </Button>
-        </div>
-
-        {/* Trust indicators */}
-        <div className="flex flex-wrap justify-center items-center gap-8 text-primary-200">
-          <div className="flex items-center space-x-2">
-            <span>🔒</span>
-            <span className="text-sm">Your data is secure</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span>⚡</span>
-            <span className="text-sm">Start in under 60 seconds</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span>💯</span>
-            <span className="text-sm">30-day money-back guarantee</span>
-          </div>
         </div>
       </div>
     </section>
