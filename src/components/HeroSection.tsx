@@ -30,7 +30,7 @@ export const HeroSection: React.FC = () => {
           </p>
           
           {/* CTA buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-slide-up">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
             <Button
               variant="secondary"
               size="lg"
@@ -47,25 +47,6 @@ export const HeroSection: React.FC = () => {
             >
               Learn More
             </Button>
-          </div>
-        </div>
-        
-        {/* App screenshot mockup */}
-        <div className="mt-16 max-w-5xl mx-auto animate-slide-up">
-          <div className="relative">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 shadow-2xl">
-              <div className="bg-gray-100 rounded-xl h-96 flex items-center justify-center">
-                <div className="text-center text-gray-500">
-                  <div className="w-20 h-20 bg-primary-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-2xl">🤖</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Floating elements around the mockup */}
-            <div className="absolute -top-4 -left-4 w-8 h-8 bg-secondary-400 rounded-full animate-bounce"></div>
-            <div className="absolute -bottom-4 -right-4 w-6 h-6 bg-primary-400 rounded-full animate-bounce" style={{ animationDelay: '0.5s' }}></div>
           </div>
         </div>
       </div>
