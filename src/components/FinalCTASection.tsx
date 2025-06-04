@@ -25,7 +25,7 @@ export const FinalCTASection: React.FC = () => {
           <Button
             variant="secondary"
             size="lg"
-            href="https://apps.apple.com/us/app/thinkers-your-ai-team/id6743700517"
+            href="https://apps.apple.com/app/6743700517"
             className="text-lg px-12 py-4"
           >
             Download Thinkers
