@@ -19,7 +19,7 @@ export const PricingSection: React.FC = () => {
         'Community support',
       ],
       ctaText: 'Start with Starter',
-      href: 'https://apps.apple.com/us/app/thinkers-your-ai-team/id6743700517',
+      href: 'https://apps.apple.com/app/6743700517',
     },
     {
       plan: 'Active',
@@ -36,7 +36,7 @@ export const PricingSection: React.FC = () => {
         'Early access to new features',
       ],
       ctaText: 'Choose Active',
-      href: 'https://apps.apple.com/us/app/thinkers-your-ai-team/id6743700517',
+      href: 'https://apps.apple.com/app/6743700517',
     },
     {
       plan: 'Power',
@@ -54,7 +54,7 @@ export const PricingSection: React.FC = () => {
         'White-label options',
       ],
       ctaText: 'Go Power',
-      href: 'https://apps.apple.com/us/app/thinkers-your-ai-team/id6743700517',
+      href: 'https://apps.apple.com/app/6743700517',
     },
   ]
 

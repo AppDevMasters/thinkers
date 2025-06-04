@@ -34,7 +34,7 @@ export const HeroSection: React.FC = () => {
             <Button
               variant="secondary"
               size="lg"
-              href="https://apps.apple.com/us/app/thinkers-your-ai-team/id6743700517"
+              href="https://apps.apple.com/app/6743700517"
               className="w-full sm:w-auto text-lg px-8 py-4"
             >
               Download on App Store
