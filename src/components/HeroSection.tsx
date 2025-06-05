@@ -39,14 +39,6 @@ export const HeroSection: React.FC = () => {
             >
               Download on App Store
             </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              href="#features"
-              className="w-full sm:w-auto text-lg px-8 py-4 bg-white/10 text-white border-white/30 hover:bg-white/20 hover:border-white/50"
-            >
-              Learn More
-            </Button>
           </div>
         </div>
       </div>
