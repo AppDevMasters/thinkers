@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thinkers - Shared Insight</title>
+    <meta name="apple-itunes-app" content="app-id=6745890103">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f7;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 400px;
+            margin: 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .logo {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 25px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            color: white;
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #1d1d1f;
+        }
+        p {
+            font-size: 17px;
+            color: #86868b;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        .download-btn:hover {
+            transform: scale(1.05);
+        }
+        .or-text {
+            margin: 20px 0;
+            color: #86868b;
+            font-size: 15px;
+        }
+        .web-link {
+            color: #007AFF;
+            text-decoration: none;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🧠</div>
+        <h1>Shared Insight</h1>
+        <p>Someone shared an AI-generated insight with you. Download the Thinkers app to view and interact with this content.</p>
+        
+        <a href="https://apps.apple.com/app/id6745890103" class="download-btn">
+            Download Thinkers
+        </a>
+        
+        <div class="or-text">or</div>
+        
+        <a href="https://thinkers.team" class="web-link">Visit our website</a>
+    </div>
+    
+    <script>
+        // Get the share ID from the URL
+        const pathParts = window.location.pathname.split('/');
+        const shareId = pathParts[pathParts.length - 1];
+        
+        // Store the share ID for later use
+        if (shareId && shareId !== 'insights' && shareId !== '') {
+            localStorage.setItem('pendingShareId', shareId);
+            console.log('Stored share ID:', shareId);
+        }
+        
+        // Auto-prompt on mobile after a delay
+        const isMobile = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+        if (isMobile) {
+            setTimeout(() => {
+                if (confirm("This shared insight requires the Thinkers app. Would you like to download it now?")) {
+                    window.location.href = "https://apps.apple.com/app/id6745890103";
+                }
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
