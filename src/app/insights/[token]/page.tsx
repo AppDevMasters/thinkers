@@ -23,39 +23,88 @@ export default function SharedInsightPage() {
   const token = params.token as string
   const [data, setData] = useState<SharedInsightData | null>(null)
   const [loading, setLoading] = useState(true)
+  const [attemptedAppOpen, setAttemptedAppOpen] = useState(false)
 
   useEffect(() => {
-    async function fetchInsight() {
-      try {
-        const response = await fetch(
-          `https://us-central1-thinkers-283ce.cloudfunctions.net/getSharedInsight?token=${token}`
-        )
-
-        if (!response.ok) {
-          const error = await response.json()
-          setData({ error: error.error || 'Failed to load insight' })
-        } else {
-          const insightData = await response.json()
-          setData(insightData)
+    // Try to open in app first (for iOS)
+    if (!attemptedAppOpen && typeof window !== 'undefined') {
+      setAttemptedAppOpen(true)
+      
+      // Try to open the app using a custom URL scheme
+      const appUrl = `thinkers://insights/${token}`
+      const appStoreUrl = 'https://apps.apple.com/app/thinkers-ai-companions/id6739299469'
+      
+      // Create a hidden iframe to attempt opening the app
+      const iframe = document.createElement('iframe')
+      iframe.style.display = 'none'
+      iframe.src = appUrl
+      document.body.appendChild(iframe)
+      
+      // Set a timeout to redirect to App Store if app doesn't open
+      const timeout = setTimeout(() => {
+        // Remove the iframe
+        document.body.removeChild(iframe)
+        
+        // Check if we're still on this page (app didn't open)
+        if (document.visibilityState === 'visible') {
+          // On mobile devices, redirect to App Store
+          if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            window.location.href = appStoreUrl
+          }
+          // On desktop or if app isn't installed, continue loading the web view
+          else {
+            fetchInsight()
+          }
         }
-      } catch (error) {
-        console.error('Error fetching shared insight:', error)
-        setData({ error: 'Failed to load insight' })
-      } finally {
-        setLoading(false)
+      }, 2500)
+      
+      // If the page becomes hidden, it means the app opened
+      const handleVisibilityChange = () => {
+        if (document.visibilityState === 'hidden') {
+          clearTimeout(timeout)
+          document.body.removeChild(iframe)
+        }
+      }
+      
+      document.addEventListener('visibilitychange', handleVisibilityChange)
+      
+      return () => {
+        clearTimeout(timeout)
+        document.removeEventListener('visibilitychange', handleVisibilityChange)
       }
     }
+  }, [token, attemptedAppOpen])
 
-    if (token) {
-      fetchInsight()
+  async function fetchInsight() {
+    try {
+      const response = await fetch(
+        `https://us-central1-thinkers-283ce.cloudfunctions.net/getSharedInsight?token=${token}`
+      )
+
+      if (!response.ok) {
+        const error = await response.json()
+        setData({ error: error.error || 'Failed to load insight' })
+      } else {
+        const insightData = await response.json()
+        setData(insightData)
+      }
+    } catch (error) {
+      console.error('Error fetching shared insight:', error)
+      setData({ error: 'Failed to load insight' })
+    } finally {
+      setLoading(false)
     }
-  }, [token])
+  }
 
-  if (loading) {
+  // Show minimal loading state during app open attempt
+  if (loading && !data) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="animate-pulse">
-          <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full animate-spin" />
+        <div className="text-center">
+          <div className="animate-pulse mb-4">
+            <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full animate-spin mx-auto" />
+          </div>
+          <p className="text-white text-sm">Opening in Thinkers app...</p>
         </div>
       </div>
     )
@@ -145,6 +194,27 @@ export default function SharedInsightPage() {
 
       {/* Content */}
       <main className="max-w-4xl mx-auto px-4 py-12">
+        {/* App Install Banner for Mobile */}
+        <div className="bg-gradient-to-r from-purple-500 to-blue-500 rounded-xl p-4 mb-8 lg:hidden">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center">
+                <span className="text-2xl">🧠</span>
+              </div>
+              <div>
+                <p className="text-white font-semibold">View in Thinkers App</p>
+                <p className="text-white/80 text-sm">Get the full experience</p>
+              </div>
+            </div>
+            <a
+              href="https://apps.apple.com/app/thinkers-ai-companions/id6739299469"
+              className="bg-white text-black px-4 py-2 rounded-lg font-semibold text-sm"
+            >
+              Open
+            </a>
+          </div>
+        </div>
+
         {/* Thinker Info */}
         <div className="flex items-center gap-4 mb-8">
           {thinker?.avatar && (
