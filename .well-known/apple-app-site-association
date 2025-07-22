@@ -3,7 +3,7 @@
         "apps": [],
         "details": [
             {
-                "appID": "2GCNV9PWWJ.com.appdevmasters.thinkers",
+                "appID": "2GCNV9PWWJ.com.appdevmasters.Thinkers",
                 "paths": [ "/insights/*", "*" ]
             }
         ]
