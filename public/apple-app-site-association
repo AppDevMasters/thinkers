@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "2GCNV9PWWJ.com.appdevmasters.thinkers",
+        "paths": [
+          "/insights/*"
+        ]
+      }
+    ]
+  }
+}
