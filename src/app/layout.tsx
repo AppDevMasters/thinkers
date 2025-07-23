@@ -5,6 +5,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://thinkers.team'),
   title: 'Thinkers - Create Your Perfect AI Conversation Partner',
   description: 'Design custom AI personalities, chat naturally, and explore endless conversations with Thinkers. Privacy-first AI conversation platform.',
   keywords: ['AI conversation', 'custom AI personalities', 'AI chat platform', 'personalized AI assistant', 'private AI conversations'],
