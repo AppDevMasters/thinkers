@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thinkers - Shared Insight</title>
-    <meta name="apple-itunes-app" content="app-id=6745890103">
+    <meta name="apple-itunes-app" content="app-id=6738062542">
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -80,7 +80,7 @@
         <h1>Shared Insight</h1>
         <p>Someone shared an AI-generated insight with you. Download the Thinkers app to view and interact with this content.</p>
         
-        <a href="https://apps.apple.com/app/id6745890103" class="download-btn">
+        <a href="https://apps.apple.com/app/id6738062542" class="download-btn">
             Download Thinkers
         </a>
         
@@ -91,13 +91,12 @@
     
     <script>
         // Get the share ID from the URL
-        const pathParts = window.location.pathname.split('/');
-        const shareId = pathParts[pathParts.length - 1];
+        const urlParams = new URLSearchParams(window.location.search);
+        const shareId = urlParams.get('shareId') || window.location.pathname.split('/').pop();
         
         // Store the share ID for later use
-        if (shareId && shareId !== 'insights' && shareId !== '') {
+        if (shareId && shareId !== 'insights') {
             localStorage.setItem('pendingShareId', shareId);
-            console.log('Stored share ID:', shareId);
         }
         
         // Auto-prompt on mobile after a delay
@@ -105,7 +104,7 @@
         if (isMobile) {
             setTimeout(() => {
                 if (confirm("This shared insight requires the Thinkers app. Would you like to download it now?")) {
-                    window.location.href = "https://apps.apple.com/app/id6745890103";
+                    window.location.href = "https://apps.apple.com/app/id6738062542";
                 }
             }, 2000);
         }
