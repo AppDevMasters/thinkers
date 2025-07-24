@@ -136,6 +136,15 @@
             // Show loading indicator
             loadingIndicator.classList.add('active');
             
+            // Try to open app using custom URL scheme
+            const customSchemeUrl = `thinkers://insights?shareId=${shareId}`;
+            
+            // Create an iframe to attempt opening the custom URL scheme
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = customSchemeUrl;
+            document.body.appendChild(iframe);
+            
             // For iOS devices, implement automatic redirect to App Store
             let hasRedirected = false;
             
@@ -156,6 +165,8 @@
                 if (!hasRedirected && !document.hidden) {
                     // App didn't open, redirect to App Store
                     loadingIndicator.innerHTML = 'Redirecting to App Store...';
+                    // Remove iframe
+                    document.body.removeChild(iframe);
                     setTimeout(function() {
                         window.location.href = "https://apps.apple.com/app/id6743700517";
                     }, 500);
