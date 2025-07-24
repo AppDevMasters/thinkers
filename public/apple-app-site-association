@@ -5,7 +5,8 @@
       {
         "appID": "2GCNV9PWWJ.com.appdevmasters.thinkers",
         "paths": [
-          "/insights/*"
+          "/insights/*",
+          "/insights/?*"
         ]
       }
     ]
