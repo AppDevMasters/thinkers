@@ -72,6 +72,30 @@
             text-decoration: none;
             font-size: 15px;
         }
+        .loading {
+            display: none;
+            margin-top: 20px;
+            font-size: 15px;
+            color: #86868b;
+        }
+        .loading.active {
+            display: block;
+        }
+        .spinner {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -83,6 +107,11 @@
         <a href="https://apps.apple.com/app/id6743700517" class="download-btn">
             Download Thinkers
         </a>
+        
+        <div class="loading" id="loadingIndicator">
+            <span class="spinner"></span>
+            Opening in Thinkers app...
+        </div>
         
         <div class="or-text">or</div>
         
@@ -99,9 +128,42 @@
             localStorage.setItem('pendingShareId', shareId);
         }
         
-        // Auto-prompt on mobile after a delay
-        const isMobile = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-        if (isMobile) {
+        // Smart fallback strategy for iOS devices
+        const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        
+        if (isIOS) {
+            // Show loading indicator
+            loadingIndicator.classList.add('active');
+            
+            // For iOS devices, implement automatic redirect to App Store
+            let hasRedirected = false;
+            
+            // Try to detect if the app opened (by checking if page becomes hidden)
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) {
+                    hasRedirected = true;
+                }
+            });
+            
+            // Also check for page blur (another indicator the app might have opened)
+            window.addEventListener('blur', function() {
+                hasRedirected = true;
+            });
+            
+            // Set a timeout to redirect to App Store if app didn't open
+            setTimeout(function() {
+                if (!hasRedirected && !document.hidden) {
+                    // App didn't open, redirect to App Store
+                    loadingIndicator.innerHTML = 'Redirecting to App Store...';
+                    setTimeout(function() {
+                        window.location.href = "https://apps.apple.com/app/id6743700517";
+                    }, 500);
+                }
+            }, 1500); // 1.5 seconds is usually enough to detect if app opened
+            
+        } else {
+            // For non-iOS devices, show the download prompt after a delay
             setTimeout(() => {
                 if (confirm("This shared insight requires the Thinkers app. Would you like to download it now?")) {
                     window.location.href = "https://apps.apple.com/app/id6743700517";
