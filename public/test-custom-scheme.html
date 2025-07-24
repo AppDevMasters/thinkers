@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Custom URL Scheme</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f5f5f7;
+            border-radius: 10px;
+        }
+        a {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background: #007AFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Custom URL Scheme</h1>
+    
+    <div class="note">
+        <strong>Important:</strong> You must rebuild and reinstall the app after adding the custom URL scheme to Info.plist
+    </div>
+    
+    <div class="test-section">
+        <h2>Direct Custom Scheme Links</h2>
+        <p>These should open the app directly if it's installed with the custom scheme:</p>
+        <a href="thinkers://insights?shareId=test123">thinkers://insights?shareId=test123</a>
+        <br>
+        <a href="thinkers://insights?shareId=abc456">thinkers://insights?shareId=abc456</a>
+    </div>
+    
+    <div class="test-section">
+        <h2>JavaScript Test</h2>
+        <button onclick="testCustomScheme()">Test with JavaScript</button>
+        <p id="result"></p>
+    </div>
+    
+    <div class="test-section">
+        <h2>Verification Steps:</h2>
+        <ol>
+            <li>Make sure you've rebuilt the app in Xcode after adding URL scheme</li>
+            <li>Install the updated app on your device</li>
+            <li>Click one of the custom scheme links above</li>
+            <li>If working, the app should open directly</li>
+            <li>If not working, you'll see an error or nothing will happen</li>
+        </ol>
+    </div>
+    
+    <script>
+        function testCustomScheme() {
+            const resultEl = document.getElementById('result');
+            resultEl.textContent = 'Attempting to open app...';
+            
+            // Try to open the custom scheme
+            window.location.href = 'thinkers://insights?shareId=jstest789';
+            
+            // Check if we're still on the page after 2 seconds
+            setTimeout(() => {
+                resultEl.textContent = 'If you see this message, the app might not be installed or the URL scheme is not configured.';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thinkers - Shared Insight</title>
-    <meta name="apple-itunes-app" content="app-id=6743700517">
+    <meta name="apple-itunes-app" content="app-id=6743700517" id="smart-app-banner">
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -126,6 +126,12 @@
         // Store the share ID for later use
         if (shareId && shareId !== 'insights') {
             localStorage.setItem('pendingShareId', shareId);
+            
+            // Update Smart App Banner with app-argument
+            const smartBanner = document.getElementById('smart-app-banner');
+            if (smartBanner) {
+                smartBanner.content = `app-id=6743700517, app-argument=thinkers://insights?shareId=${shareId}`;
+            }
         }
         
         // Smart fallback strategy for iOS devices
@@ -139,11 +145,17 @@
             // Try to open app using custom URL scheme
             const customSchemeUrl = `thinkers://insights?shareId=${shareId}`;
             
-            // Create an iframe to attempt opening the custom URL scheme
-            const iframe = document.createElement('iframe');
-            iframe.style.display = 'none';
-            iframe.src = customSchemeUrl;
-            document.body.appendChild(iframe);
+            // Try multiple methods to open the app
+            // Method 1: Direct window.location
+            window.location.href = customSchemeUrl;
+            
+            // Method 2: After a small delay, try iframe approach
+            setTimeout(() => {
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.src = customSchemeUrl;
+                document.body.appendChild(iframe);
+            }, 100);
             
             // For iOS devices, implement automatic redirect to App Store
             let hasRedirected = false;
@@ -165,8 +177,6 @@
                 if (!hasRedirected && !document.hidden) {
                     // App didn't open, redirect to App Store
                     loadingIndicator.innerHTML = 'Redirecting to App Store...';
-                    // Remove iframe
-                    document.body.removeChild(iframe);
                     setTimeout(function() {
                         window.location.href = "https://apps.apple.com/app/id6743700517";
                     }, 500);
