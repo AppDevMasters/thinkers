@@ -33,6 +33,13 @@ jobs:
       - name: Build site
         run: npm run build
         
+      - name: Copy ACME challenge files
+        run: |
+          mkdir -p out/.well-known/acme-challenge
+          if [ -d "public/.well-known/acme-challenge" ]; then
+            cp -r public/.well-known/acme-challenge/* out/.well-known/acme-challenge/ || true
+          fi
+        
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
