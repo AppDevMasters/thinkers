@@ -6,9 +6,13 @@
         "appID": "2GCNV9PWWJ.com.appdevmasters.thinkers",
         "paths": [
           "/insights/*",
-          "/insights/?*"
+          "/insights/?*",
+          "/insights/?"
         ]
       }
     ]
+  },
+  "webcredentials": {
+    "apps": ["2GCNV9PWWJ.com.appdevmasters.thinkers"]
   }
 }
